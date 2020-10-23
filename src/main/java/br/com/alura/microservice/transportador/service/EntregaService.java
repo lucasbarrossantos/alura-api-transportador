@@ -1,5 +1,8 @@
 package br.com.alura.microservice.transportador.service;
 
+import br.com.alura.microservice.transportador.controller.EntregaController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +13,9 @@ import br.com.alura.microservice.transportador.repository.EntregaRepository;
 
 @Service
 public class EntregaService {
-	
+
+	private final Logger log = LoggerFactory.getLogger(EntregaService.class);
+
 	@Autowired
 	private EntregaRepository repository;
 
@@ -28,6 +33,8 @@ public class EntregaService {
 		VoucherDTO voucher = new VoucherDTO();
 		voucher.setNumero(entrega.getId());
 		voucher.setPrevisaoParaEntrega(entrega.getPrevisaoParaEntrega());
+
+		log.info("Entrega agendada com sucesso!");
 		return voucher;
 	}
 
